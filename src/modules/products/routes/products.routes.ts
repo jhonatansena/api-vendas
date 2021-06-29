@@ -4,8 +4,9 @@ import {ProductsController} from "../controllers/ProductsController";
 
 const productsController = new ProductsController();
 
-const router = Router();
+const productsRouter = Router();
 
-router.get('/products', productsController.handle);
+productsRouter.post('/', productsController.handle);
 
-export {router}
+
+export {productsRouter}
