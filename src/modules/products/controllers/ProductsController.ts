@@ -7,7 +7,7 @@ class ProductsController{
 
     const createProductService = new CreateProductService();
 
-    const product = await createProductService.execute({name, price, quantity});
+    const product = await createProductService.create({name, price, quantity});
 
     return response.json(product);
   }
