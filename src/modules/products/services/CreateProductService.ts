@@ -12,7 +12,7 @@ interface IProductRequest{
 
 class CreateProductService{
 
-  async create({name, price, quantity}: IProductRequest): Promise<Product>{
+  async execute({name, price, quantity}: IProductRequest): Promise<Product>{
     const productRepositories = getCustomRepository(ProductsRepositories);
 
     const productExist = await productRepositories.findOne({name})
