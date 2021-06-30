@@ -1,7 +1,7 @@
 import {Router} from "express"
-import { CreateProductsController } from "../controllers/products/CreateProductsController";
-import { EditProducsController } from "../controllers/products/EditProductsController";
-import { ListProductsController } from "../controllers/products/ListProductsController";
+import { CreateProductsController } from "../controllers/CreateProductsController";
+import { EditProducsController } from "../controllers/EditProductsController";
+import { ListProductsController } from "../controllers/ListProductsController";
 
 const createProductsController = new CreateProductsController();
 const listProductsController = new ListProductsController();
