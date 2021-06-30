@@ -1,5 +1,6 @@
 import { AppError } from "@shared/errors/AppError";
 import { getCustomRepository } from "typeorm";
+import { Product } from "../typeorm/entities/Product";
 import { ProductsRepositories } from "../typeorm/repositories/ProductsRepositories";
 
 interface IProduct{
@@ -8,7 +9,7 @@ interface IProduct{
 
 class ShowProductService{
 
-  async execute({id}: IProduct){
+  async execute({id}: IProduct): Promise<Product>{
 
     const productsRepositories = getCustomRepository(ProductsRepositories);
 

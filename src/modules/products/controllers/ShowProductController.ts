@@ -3,7 +3,7 @@ import { ShowProductService } from "../services/ShowProductService"
 
 
 class ShowProductController{
-  async show(request: Request, response: Response){
+  async show(request: Request, response: Response): Promise<Response>{
 
     const {id} = request.params
 

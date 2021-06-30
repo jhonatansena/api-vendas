@@ -2,7 +2,7 @@ import { ListProductService } from '@modules/products/services/ListProductServic
 import { Request, Response } from 'express';
 
 class ListProductsController{
-  async index(request: Request, response: Response){
+  async index(request: Request, response: Response): Promise<Response>{
     const listProductService = new ListProductService();
 
     const products = await listProductService.execute();
