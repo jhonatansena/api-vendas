@@ -1,4 +1,6 @@
 import {Router} from "express"
+import { celebrate, Joi, Segments } from "celebrate";
+
 import { CreateProductsController } from "../controllers/CreateProductsController";
 import { DeleteProductController } from "../controllers/DeleteProductController";
 import { EditProducsController } from "../controllers/EditProductsController";
@@ -13,11 +15,55 @@ const deleteProductController = new DeleteProductController();
 
 const productsRouter = Router();
 
-productsRouter.post('/', createProductsController.create);
+productsRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    }
+  }),
+   showProductController.show
+   );
+
+
+productsRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      price: Joi.number().precision(2).required(),
+      quantity: Joi.number().required()
+    }
+  }),
+  createProductsController.create
+  );
+
+  productsRouter.put(
+    '/:id',
+    celebrate({
+      [Segments.BODY]: {
+        name: Joi.string().required(),
+        price: Joi.number().precision(2).required(),
+        quantity: Joi.number().required()
+      },
+      [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+      }
+    }),
+    editProductController.update);
+
+
+  productsRouter.delete(
+    '/:id',
+    celebrate({
+      [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+      }
+    }),
+    deleteProductController.delete);
+
+
 productsRouter.get('/', listProductsController.index);
-productsRouter.put('/:id', editProductController.update);
-productsRouter.get('/:id', showProductController.show);
-productsRouter.delete('/:id', deleteProductController.delete);
 
 
 

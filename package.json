@@ -13,6 +13,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
+    "@types/joi": "^17.2.3",
     "@types/node": "^15.12.5",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
@@ -26,6 +27,7 @@
   },
   "dependencies": {
     "@types/uuid": "^8.3.0",
+    "celebrate": "^14.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
