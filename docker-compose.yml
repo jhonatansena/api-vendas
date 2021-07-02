@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: apivendas
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
+
+  database:
+    image: postgres
+    container_name: "database_apivendas"
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=apivendas
+    volumes:
+      - pgdata:/data/postgres
+
+
+
+volumes:
+  pgdata:
+    driver: local

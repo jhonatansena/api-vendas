@@ -6,6 +6,8 @@ temp/
 .env
 coverage
 ormconfig.json
+ormconfig.mysql.json
+ormconfig.postgresql.json
 dist
 
 uploads/*
