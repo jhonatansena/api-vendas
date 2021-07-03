@@ -8,5 +8,195 @@
       "email":"jcostasenna@gmail.com"
     },
     "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http:localhost:3000/",
+      "description": "api principal"
+    }
+
+  ],
+  "paths": {
+    "/products": {
+      "post": {
+        "tags": ["Products"],
+        "sumary": "Cadastro de produtos",
+        "description": "Essa rota é responsável por cadastrar um novo produto",
+        "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Product"
+                },
+                "exemples":{
+                  "products":{
+                    "value": {
+                      "name": "Mouse USB",
+                      "price": 24.88,
+                      "quantity": 34
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "responses": {
+          "400": {
+            "description": "Product already exists!"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+
+        }
+
+      },
+      "get": {
+        "tags": ["Products"],
+        "summary": "Lista todos os produtos",
+        "description": "Essa rota é responsável por listar todos os produtos",
+        "responses":{
+          "200":{
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "description": "Buscar um produto pelo id",
+        "summary": "Rota responsável por retornar um produto específico",
+        "tags": ["Products"],
+        "parameters":[
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Nome do produto pelo id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type":"object",
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deleta um produto pelo id",
+        "summary": "Rota responsável por retornar um produto específico",
+        "tags": ["Products"],
+        "parameters":[
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Nome do produto pelo id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type":"object",
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Alterar um produto",
+        "summary": "Rota responsável por alterar um produto específico",
+        "tags": ["Products"],
+        "parameters":[
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Nome do produto pelo id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Product"
+              },
+              "exemples":{
+                "products":{
+                  "value": {
+                    "name": "Mouse USB",
+                    "price": 25.90,
+                    "quantity": 90
+                  }
+                }
+              }
+            }
+          }
+      },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type":"object",
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+  ,
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "properties": {
+
+          "name": {
+            "type": "string"
+          },
+          "price":{
+            "type": "number"
+          },
+          "quantity": {
+            "type": "number"
+          }
+        }
+      }
+    }
   }
 }
