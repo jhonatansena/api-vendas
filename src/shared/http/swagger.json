@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de sistema de vendas",
+    "description": "Essa API tem como objetivo gerenciar o estoque, frente de caixa de uma loja, procurar entender o comportamento dos clientes e etc",
+    "termsOfService": "http://localhost:3000/terms",
+    "contact": {
+      "email":"jcostasenna@gmail.com"
+    },
+    "version": "1.0.0"
+  }
+}
