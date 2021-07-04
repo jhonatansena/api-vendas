@@ -8,13 +8,12 @@ interface IUser{
   name: string;
   email: string;
   password: string;
-  avatar: string;
 
 }
 
 
 class CreateUserService{
-  async execute({name, email, password, avatar}: IUser): Promise<User>{
+  async execute({name, email, password}: IUser): Promise<User>{
     const userRepositories = getCustomRepository(UsersRepositories);
 
     const emailExist = await userRepositories.findOne({email});
@@ -27,8 +26,7 @@ class CreateUserService{
     const user = userRepositories.create({
       name,
       email,
-      password: hashPassword,
-      avatar
+      password: hashPassword
     })
     await userRepositories.save(user);
 
