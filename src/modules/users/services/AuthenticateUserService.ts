@@ -1,9 +1,9 @@
 import { getCustomRepository } from 'typeorm';
-import { User } from "@modules/typeorm/entities/User";
 import { UsersRepositories } from '@modules/typeorm/repositories/UsersRepositories';
 import { AppError } from '@shared/errors/AppError';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import authConfig from '@config/auth';
 
 
 interface IRequeste{
@@ -36,9 +36,9 @@ class AuthenticateUserService{
       throw new AppError("Email or password incorrect!")
     }
 
-    const token = sign({}, "1b5401fcb3ef50b1d8343080d05c18f5",{
+    const token = sign({}, authConfig.jwt.secret,{
       subject: user.id,
-      expiresIn: "1d"
+      expiresIn: authConfig.jwt.experesIn
     });
 
     return {user, token};
