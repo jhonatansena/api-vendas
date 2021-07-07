@@ -3,28 +3,37 @@ import { AppError } from '@shared/errors/AppError';
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
+interface ItokenPayload{
+  iat: number;
+  exp: number;
+  sub: string;
+
+}
 
 export function isAuthenticated(
   request: Request,
   response: Response,
   next: NextFunction
 ){
-  const authToken  = request.headers.authorization;
+  const authToken = request.headers.authorization;
 
-  if(!authToken){
-    throw new AppError('JWT token is missing.')
+  if (!authToken) {
+    throw new AppError('JWT token is missing.');
   }
 
-  const [, token] = authToken?.split(" ");
+  const [, token] = authToken?.split(' ');
 
-try {
+  try {
+    const decodeToken = verify(token, authConfig.jwt.secret);
 
-  const decodeToken = verify(token, authConfig.jwt.secret);
+    const { sub } = decodeToken as ItokenPayload;
 
-  return next();
+    request.user = {
+      id: sub,
+    }
 
-} catch (error) {
-   throw new AppError('Invalid JWT Token')
-}
-
+    return next();
+  } catch (error) {
+    throw new AppError('Invalid JWT Token');
+  }
 }

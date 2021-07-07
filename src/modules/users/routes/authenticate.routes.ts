@@ -1,7 +1,7 @@
-import { celebrate, Segments } from "celebrate";
-import {Router} from "express"
-import Joi from "joi";
-import { AuthenticateUserController } from "../controllers/AuthenticateUserController";
+import { celebrate, Segments } from 'celebrate';
+import { Router } from 'express';
+import Joi from 'joi';
+import { AuthenticateUserController } from '../controllers/AuthenticateUserController';
 
 const authenticateUserController = new AuthenticateUserController();
 
@@ -12,11 +12,10 @@ authenticateRouter.post(
   celebrate({
     [Segments.BODY]: {
       email: Joi.string().email().required(),
-      password: Joi.string().required()
-    }
+      password: Joi.string().required(),
+    },
   }),
-  authenticateUserController.authenticate);
+  authenticateUserController.authenticate,
+);
 
-
-
-export {authenticateRouter}
+export { authenticateRouter };
