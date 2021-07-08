@@ -8,11 +8,13 @@ import routes from './routes';
 import { AppError } from '@shared/errors/AppError';
 import '@shared/typeorm';
 import swaggerDocs from './swagger.json';
+import upload from '@config/upload';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/file', express.static(upload.directory));
 
 app.use(routes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
