@@ -2,7 +2,7 @@ import { CreateProductService } from '@modules/products/services/CreateProductSe
 import { Request, Response } from 'express';
 
 class CreateProductsController {
-  async create(request: Request, response: Response) {
+  async create(request: Request, response: Response): Promise<Response> {
     const { name, price, quantity } = request.body;
 
     const createProductService = new CreateProductService();
