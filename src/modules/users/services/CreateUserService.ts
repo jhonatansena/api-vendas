@@ -1,5 +1,5 @@
-import { User } from '@modules/typeorm/entities/User';
-import { UsersRepositories } from '@modules/typeorm/repositories/UsersRepositories';
+import { User } from '@modules/users/typeorm/entities/User';
+import { UsersRepositories } from '@modules/users/typeorm/repositories/UsersRepositories';
 import { AppError } from '@shared/errors/AppError';
 import { hash } from 'bcryptjs';
 import { getCustomRepository } from 'typeorm';
