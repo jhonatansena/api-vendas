@@ -1,4 +1,5 @@
 import handlebars from 'handlebars';
+
 interface ItemplateVariable {
   [key: string]: string | number;
 }
@@ -8,7 +9,7 @@ interface IParseMailTemplate {
   variables: ItemplateVariable;
 }
 
-class HandlebarsMailTemplate {
+export default class HandlebarsMailTemplate {
   public async parse({
     template,
     variables,
@@ -18,5 +19,3 @@ class HandlebarsMailTemplate {
     return parseTemplate(variables);
   }
 }
-
-export { HandlebarsMailTemplate };
