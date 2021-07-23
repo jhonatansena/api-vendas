@@ -1,18 +1,15 @@
 import { Request, Response } from 'express';
-import { DeleteProductService } from "../services/DeleteProductService"
+import { DeleteProductService } from '../services/DeleteProductService';
 
-
-class DeleteProductController{
-
-  async delete(request: Request, response: Response){
+class DeleteProductController {
+  async delete(request: Request, response: Response): Promise<Response> {
     const deleteProductService = new DeleteProductService();
-    const {id} = request.params;
+    const { id } = request.params;
 
-    const product = await deleteProductService.execute({id})
+    await deleteProductService.execute({ id });
 
     return response.json([]);
   }
-
 }
 
-export {DeleteProductController}
+export { DeleteProductController };
