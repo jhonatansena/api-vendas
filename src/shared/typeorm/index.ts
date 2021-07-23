@@ -1,11 +1,8 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 
 try {
-
-createConnection();
-
+  createConnection();
 } catch (error) {
-  throw new Error("Falha na conexão");
-
+  throw new Error('Falha na conexão');
 }
