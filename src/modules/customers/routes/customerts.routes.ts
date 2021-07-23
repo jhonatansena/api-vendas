@@ -7,6 +7,8 @@ import { EditCustomerController } from '../controllers/EditCustomerController';
 import { ListCustomersController } from '../controllers/IndexCustomerController';
 import { ShowCustomerController } from '../controllers/ShowCustomerController';
 
+import { isAuthenticated } from '../../../shared/http/middlewares/isAuthenticated';
+
 const createCustomerController = new CreateCustomerController();
 const listCustomerController = new ListCustomersController();
 const editCustomerController = new EditCustomerController();
@@ -14,6 +16,8 @@ const showCustomerController = new ShowCustomerController();
 const deleteCustomerController = new DeleteCustomerController();
 
 const customerRouter = Router();
+
+customerRouter.use(isAuthenticated);
 
 customerRouter.get(
   '/:id',
