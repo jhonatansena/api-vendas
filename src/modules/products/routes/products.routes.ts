@@ -1,11 +1,11 @@
-import {Router} from "express"
-import { celebrate, Joi, Segments } from "celebrate";
+import { Router } from 'express';
+import { celebrate, Joi, Segments } from 'celebrate';
 
-import { CreateProductsController } from "../controllers/CreateProductsController";
-import { DeleteProductController } from "../controllers/DeleteProductController";
-import { EditProducsController } from "../controllers/EditProductsController";
-import { ListProductsController } from "../controllers/ListProductsController";
-import { ShowProductController } from "../controllers/ShowProductController";
+import { CreateProductsController } from '../controllers/CreateProductsController';
+import { DeleteProductController } from '../controllers/DeleteProductController';
+import { EditProducsController } from '../controllers/EditProductsController';
+import { ListProductsController } from '../controllers/ListProductsController';
+import { ShowProductController } from '../controllers/ShowProductController';
 
 const createProductsController = new CreateProductsController();
 const listProductsController = new ListProductsController();
@@ -20,11 +20,10 @@ productsRouter.get(
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
-    }
+    },
   }),
-   showProductController.show
-   );
-
+  showProductController.show,
+);
 
 productsRouter.post(
   '/',
@@ -32,40 +31,37 @@ productsRouter.post(
     [Segments.BODY]: {
       name: Joi.string().required(),
       price: Joi.number().precision(2).required(),
-      quantity: Joi.number().required()
-    }
+      quantity: Joi.number().required(),
+    },
   }),
-  createProductsController.create
-  );
+  createProductsController.create,
+);
 
-  productsRouter.put(
-    '/:id',
-    celebrate({
-      [Segments.BODY]: {
-        name: Joi.string().required(),
-        price: Joi.number().precision(2).required(),
-        quantity: Joi.number().required()
-      },
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-      }
-    }),
-    editProductController.update);
+productsRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      price: Joi.number().precision(2).required(),
+      quantity: Joi.number().required(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  editProductController.update,
+);
 
-
-  productsRouter.delete(
-    '/:id',
-    celebrate({
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid().required()
-      }
-    }),
-    deleteProductController.delete);
-
+productsRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  deleteProductController.delete,
+);
 
 productsRouter.get('/', listProductsController.index);
 
-
-
-
-export {productsRouter}
+export { productsRouter };
