@@ -18,7 +18,7 @@ Projeto realizado para estudo da tecnologia Node
 
 - Cadastro de usuários
 - Listar usuários
-- Somente usuário administrador
+- Somente usuário administrador lista todos usuários e clientes
 
 - Cadastro de produtos
 - ID do produto
