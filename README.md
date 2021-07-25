@@ -19,12 +19,19 @@ Projeto realizado para estudo da tecnologia Node
 - Cadastro de usuários
 - Listar usuários
 - Somente usuário administrador
+- Resetar senha
+- Envio de email para senha esquecida
+- Usuário pode colocar um avatar
 
 - Cadastro de produtos
 - ID do produto
 - Preço
 - Quantidade
 - Data da criação
+
+- Cadastro de Clientes
+- Nome do Cliente
+- Email do Cliente
 
 - Autenticação de usuário
 - Gerar token JWT
