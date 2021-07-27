@@ -5,10 +5,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { OrderProducts } from './OrdersProducts';
 
 @Entity('orders')
 class Order {
@@ -18,6 +20,11 @@ class Order {
   @ManyToOne(() => Customer)
   @JoinColumn({ name: 'customer_id' })
   customer: Customer;
+
+  @OneToMany(() => OrderProducts, order_products => order_products.order, {
+    cascade: true,
+  })
+  order_products: OrderProducts[];
 
   @Column()
   name: string;
