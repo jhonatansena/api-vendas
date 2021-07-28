@@ -10,7 +10,6 @@ interface IProductRequest {
 }
 
 class CreateProductService {
-
   async execute({ name, price, quantity }: IProductRequest): Promise<Product> {
     const productRepositories = getCustomRepository(ProductsRepositories);
 
