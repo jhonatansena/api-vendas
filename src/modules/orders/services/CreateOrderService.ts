@@ -17,7 +17,7 @@ interface IRequest {
 }
 
 class CreateOrderService {
-  async execute({ customer_id, products }: IRequest): Promise<Order> {
+  public async execute({ customer_id, products }: IRequest): Promise<Order> {
     const ordersRepository = getCustomRepository(OrderRepositories);
     const customersRepository = getCustomRepository(CustomersRepositories);
     const productsRepository = getCustomRepository(ProductsRepositories);
@@ -34,27 +34,28 @@ class CreateOrderService {
       throw new AppError('Could not find any products with the given ids.');
     }
 
-    const existsProductsId = existsProducts.map(product => product.id);
+    const existsProductsIds = existsProducts.map(product => product.id);
 
-    const checkInexistentsProducts = products.filter(
-      product => !existsProductsId.includes(product.id),
+    const checkInexistentProducts = products.filter(
+      product => !existsProductsIds.includes(product.id),
     );
 
-    if (checkInexistentsProducts.length) {
+    if (checkInexistentProducts.length) {
       throw new AppError(
-        `Could not find product ${checkInexistentsProducts[0].id}.`,
+        `Could not find product ${checkInexistentProducts[0].id}.`,
       );
     }
 
-    const quantityAvaliable = products.filter(
+    const quantityAvailable = products.filter(
       product =>
         existsProducts.filter(p => p.id === product.id)[0].quantity <
         product.quantity,
     );
 
-    if (quantityAvaliable.length) {
+    if (quantityAvailable.length) {
       throw new AppError(
-        `The quantity ${quantityAvaliable[0].quantity} is not available for ${quantityAvaliable[0].id}`,
+        `The quantity ${quantityAvailable[0].quantity}
+         is not available for ${quantityAvailable[0].id}.`,
       );
     }
 

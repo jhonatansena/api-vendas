@@ -2,10 +2,13 @@ import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 
 import { OrdersController } from '../controllers/OrdersController';
+import { isAuthenticated } from '@shared/http/middlewares/isAuthenticated';
 
 const ordersController = new OrdersController();
 
 const ordersRouter = Router();
+
+ordersRouter.use(isAuthenticated);
 
 ordersRouter.get(
   '/:id',
