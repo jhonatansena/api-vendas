@@ -26,12 +26,6 @@ class Order {
   })
   order_products: OrderProducts[];
 
-  @Column()
-  name: string;
-
-  @Column()
-  email: string;
-
   @CreateDateColumn()
   created_at: Date;
 
