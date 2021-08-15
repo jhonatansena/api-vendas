@@ -3,6 +3,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import { errors } from 'celebrate';
+import { pagination } from 'typeorm-pagination';
 import swaggerUi from 'swagger-ui-express';
 import routes from './routes';
 import { AppError } from '@shared/errors/AppError';
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/file', express.static(upload.directory));
 
+app.use(pagination);
 app.use(routes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
