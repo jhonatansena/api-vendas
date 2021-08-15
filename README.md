@@ -12,6 +12,7 @@ Projeto realizado para estudo da tecnologia Node
 * [Yarn](https://yarnpkg.com/)
 * [Docker](https://www.docker.com/)
 * [Etherel Mail](https://ethereal.email/)
+* [Redis](https://redis.io/)
 
 
 ### Funcionalidades
