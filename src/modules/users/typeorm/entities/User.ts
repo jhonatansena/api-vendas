@@ -24,7 +24,6 @@ class User {
   password: string;
 
   @Column()
-  @Expose()
   avatar: string;
 
   @CreateDateColumn()
@@ -37,6 +36,15 @@ class User {
     if (!this.id) {
       this.id = uuid();
     }
+  }
+
+  @Expose({ name: 'avatar_url' })
+  getAvatarUrl(): string | null {
+    if (!this.avatar) {
+      return null;
+    }
+
+    return `${process.env.APP_API_URL}/files/${this.avatar}`;
   }
 }
 
