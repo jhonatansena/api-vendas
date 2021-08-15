@@ -45,6 +45,6 @@ app.use(
   },
 );
 
-app.listen(process.env.APP_API_URL, () => {
+app.listen(3000, () => {
   console.log('Server running on port 3000!');
 });

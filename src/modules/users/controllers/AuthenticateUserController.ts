@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { AuthenticateUserService } from '../services/AuthenticateUserService';
+import { classToClass } from 'class-transformer';
 
 class AuthenticateUserController {
   async authenticate(request: Request, response: Response): Promise<Response> {
@@ -8,7 +9,7 @@ class AuthenticateUserController {
     const authenticateUserService = new AuthenticateUserService();
     const user = await authenticateUserService.execute({ email, password });
 
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 }
 

@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { Exclude, Expose } from 'class-transformer';
 
 @Entity('users')
 class User {
@@ -19,9 +20,11 @@ class User {
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @Column()
+  @Expose()
   avatar: string;
 
   @CreateDateColumn()
