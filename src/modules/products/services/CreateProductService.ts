@@ -22,7 +22,6 @@ class CreateProductService {
 
     const redisCache = new RedisCache();
 
-
     const product = productRepositories.create({
       name,
       price,
