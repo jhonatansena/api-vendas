@@ -11,11 +11,15 @@ import { AppError } from '@shared/errors/AppError';
 import '@shared/typeorm';
 import swaggerDocs from './swagger.json';
 import upload from '@config/upload';
+import rateLimiter from './middlewares/rateLimiter';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use(rateLimiter);
+
 app.use('/file', express.static(upload.directory));
 
 app.use(pagination);
